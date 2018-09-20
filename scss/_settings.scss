@@ -1,3 +1,86 @@
 /*
     Settings
 */
+
+// Colour Palette
+
+$color__black: #000000; // rgb(0,0,0)
+$color__white: #ffffff; // rgb(255,255,255)
+
+
+// Font Families
+
+$serif: 'Amiri', 'Georgia', serif;
+
+
+// Spacing
+
+$gutter: 16px;
+
+$padding--xxs: 8px;
+$padding--xs: 16px;
+$padding--sm: 32px;
+$padding--md: 48px;
+$padding--lg: 64px;
+$padding--xl: 96px;
+$padding--xxl: 128px;
+
+
+// Max Widths
+
+$page--maxwidth: 1140px;
+
+
+// Z-index's
+
+$zNormal: 1;
+$zOverContent: 10; // elements over content index
+$zOverAll: 999; // over everything!
+
+
+// Sizing & Measurements
+
+
+// Breakpoint Map
+
+$breakpoints: (
+    break-sm: 480px,
+    break-md: 748px,
+    break-lg: 980px,
+    break-xl: 1140px
+);
+
+
+// Mixins
+
+// Standard breakpoints
+@mixin bp($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media screen and (min-width: #{map-get($breakpoints, $breakpoint)}) {
+            @content;    
+        }
+    }
+    @else {
+         @warn "Unfortunately, no value could be retrieved from breakpoint map.";
+    }
+}
+
+// Custom breakpoints
+@mixin bpany($width, $height: null) {
+    @if ($height) {
+        @media screen and (min-width: $width) and (min-height: $height) {
+            @content;
+        }
+    } @else {
+        @media screen and (min-width: $width) {
+            @content;
+        }
+    }
+}
+
+// Fill an <img> to container
+@mixin fill-image {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+}
